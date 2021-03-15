@@ -6,7 +6,7 @@ import simulator.misc.Vector2D;
 
 public class NewtonUniversalGravitation implements ForceLaws{
 	
-	protected final double G = 6.67E-11;
+	public final static double G = 6.67E-11;
 	protected double g;
 	
 	public  NewtonUniversalGravitation(double g) {
@@ -20,7 +20,7 @@ public class NewtonUniversalGravitation implements ForceLaws{
 		double res = 0.0;
 		
 		
-		for(Body b1: bs ) {
+		for(Body b1: bs) {
 			for(Body b2: bs) {
 				if(bs.indexOf(b2) != bs.indexOf(b1)) {
 					res = (b1.getMass() * b2.getMass());
@@ -35,6 +35,6 @@ public class NewtonUniversalGravitation implements ForceLaws{
 
 	public String toString() {
 		//TODO
-		return null;
+		return "Newton Universal Gravitation Law";
 	}
 }

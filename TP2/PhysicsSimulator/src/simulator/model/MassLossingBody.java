@@ -17,23 +17,14 @@ public class MassLossingBody extends Body{
 	@Override
 	public void move(double t) {
 		
-		double c = 0.0;
-		double tiempo = 0.0;
-		
 		Vector2D aceleration = new Vector2D();
 		Vector2D at2;
 		
-		while (tiempo <= t) {
-			
-			if(c >= this.lossFrequency) {
-				c = 0;
-				this.mass = this.mass * (1-this.lossFactor);
-			}
-			aceleration = this.force.scale(1/this.mass);
-			c++;
-			tiempo++;
+		if(t >= this.lossFrequency) {
+			this.mass = this.mass * (1-this.lossFactor);
 		}
-		
+		aceleration = this.force.scale(1/this.mass);
+
 		position = this.position.plus(this.speed.scale(t));
 		at2 = aceleration.scale(1/2 * (t * t));
 		position = this.position.plus(at2);

@@ -64,15 +64,25 @@ public class Body {
 	}
 	
 	public boolean equals(Object o) {
-		//TODO
-		return false;
 		
+		JSONObject j1 = new JSONObject();
+		JSONObject j2 = new JSONObject();
+	
+		//TODO
+		
+		return false;
 	}
 	
 	public JSONObject getState() {
-		return null;
-		//TODO
 		
+		JSONObject j = new JSONObject();
+		j.put("id", this.id);
+		j.put("m", this.mass);
+		j.put("p", this.position);
+		j.put("v", this.speed);
+		j.put("f", this.force);
+		
+		return j;
 	}
 	
 	public String toString() {

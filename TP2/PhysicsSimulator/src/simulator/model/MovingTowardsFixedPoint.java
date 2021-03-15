@@ -24,4 +24,9 @@ public class MovingTowardsFixedPoint implements ForceLaws{
 			acceleration.scale(0);
 		}
 	}
+	
+	public String toString() {
+		//TODO
+		return "Moving Towards Fixed Point";
+	}
 }

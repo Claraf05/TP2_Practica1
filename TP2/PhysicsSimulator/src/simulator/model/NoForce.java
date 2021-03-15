@@ -17,6 +17,6 @@ public class NoForce implements ForceLaws{
 	
 	public String toString() {
 		//TODO
-		return null;
+		return "forze = 0";
 	}
 }
