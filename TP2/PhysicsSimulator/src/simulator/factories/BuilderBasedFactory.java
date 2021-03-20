@@ -20,7 +20,6 @@ public class BuilderBasedFactory<T> implements Factory<T>{
 		this.list = l;
 		
 	}
-	
 
 	@Override
 	public T createInstance(JSONObject info) {

@@ -2,10 +2,33 @@ package simulator.factories;
 
 import org.json.JSONObject;
 
-public class Builder<T> {
+public abstract class Builder<T> {
+	
+	protected String typeTag;
+	protected String desc;
 	
 	public Builder() {
 		
+	}
+	
+	protected abstract T createTheInstance(JSONObject j);
+	
+	public JSONObject getBuilderInfo() {
+		
+		JSONObject j = new JSONObject();
+		j.put("type", this.typeTag);
+		j.put("data", this.createData());
+		
+		return j;
+		
+	}
+	
+	protected JSONObject createData() {
+		
+		JSONObject j = new JSONObject();
+		j.put("", "");
+		
+		return j;
 	}
 	
 	public T createInstance(JSONObject info) {
@@ -18,55 +41,41 @@ public class Builder<T> {
 		JSONObject data = info.getJSONObject("data");
 		T t;
 		
-		switch(type) {
-		case "basic":
-			if(data.getJSONArray("v"). )
-			Vector2D v = new Vector2D(data.getJSONArray("v").getDouble(0), data.getJSONArray("v").getDouble(1));
-			Vector2D p = new Vector2D(data.getJSONArray("p").getDouble(0), data.getJSONArray("p").getDouble(1));
-			Body b = new Body(data.getString("id"), v, p, data.getDouble("m"));
+		try {
+			switch(type) {
 			
-			break;
-			
-		case "mlb":
-			Vector2D v2 = new Vector2D(data.getJSONArray("v").getDouble(0), data.getJSONArray("v").getDouble(1));
-			Vector2D p2 = new Vector2D(data.getJSONArray("p").getDouble(0), data.getJSONArray("p").getDouble(1));
-			
-			MassLossingBody mlb = new MassLossingBody(data.getString("id"), v2, p2, data.getDouble("m"), data.getDouble("factor"), data.getDouble("freq"));
-			
-			break;
-			
-		case "nlug":
-			if(data != null) {
-				NewtonUniversalGravitation nlug = new NewtonUniversalGravitation(data.getDouble("G"));
-			}
-			else {
-				NewtonUniversalGravitation nlug = new NewtonUniversalGravitation(NewtonUniversalGravitation.G);
-			}
-			
-			break;
-			
-		case "mtcp":
-			Vector2D c = new Vector2D(data.getJSONArray("c").getDouble(0), data.getJSONArray("c").getDouble(1));
-			MovingTowardsFixedPoint mtcp = new MovingTowardsFixedPoint(c, data.getDouble("g"));
-		
-			break;
-			
-		case "nf":
-			NoForce nf = new NoForce();		
-		
-			break;
-			
-		case "masseq":
-			
-			break;
-			
-		case "epseq":
-			
-			break;
+			case "basic":
+				this.createTheInstance(info);
+				break;
 				
+			case "mlb":
+				this.createTheInstance(info);
+				break;
+				
+			case "nlug":
+				this.createTheInstance(info);
+				break;
+				
+			case "mtcp":
+				this.createTheInstance(info);
+				break;
+				
+			case "nf":
+				this.createTheInstance(info);
+				break;
+				
+			case "masseq":
+				this.createTheInstance(info);
+				break;
+				
+			case "epseq":
+				this.createTheInstance(info);
+				break;
+			}
 		}
-		
+		catch (Exception e) {
+			throw new IllegalArgumentException();
+		}
 		return null;
 	}
-	
 }
