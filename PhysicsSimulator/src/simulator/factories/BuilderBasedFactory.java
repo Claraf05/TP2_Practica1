@@ -26,6 +26,9 @@ public class BuilderBasedFactory<T> implements Factory<T>{
 		T t = null;
 		for(Builder<T> b: this.list) {
 			t = b.createInstance(info);
+			if(t != null) {
+				return t;
+			}
 		}
 		
 		return t;
